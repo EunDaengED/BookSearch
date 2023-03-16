@@ -23,10 +23,10 @@ class MainRvAdapter(val context: Context, val bookList: ArrayList<Book>) :
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder?.bind(bookList[position])
+        holder.bind(bookList[position])
         holder.itemView.setOnClickListener {
 
-            Toast.makeText(context, "Clicked: ${bookList.get(position).bName}", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "Clicked: ${bookList.get(position).bName}", Toast.LENGTH_SHORT).show()
             //새 액티비티를 열고 웹뷰를 이용해서 상세보기 페이지를 보여 준다.
 
         }
