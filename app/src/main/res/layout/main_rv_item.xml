@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="85dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/item_border"
-    android:layout_marginTop="2dp"
-    android:layout_marginBottom="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="105dp"
     android:layout_marginStart="4dp"
-    android:layout_marginEnd="4dp">
+    android:layout_marginTop="2dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginBottom="2dp"
+    android:background="@drawable/item_border">
 
     <ImageView
         android:id="@+id/bookPhotoImg"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:layout_marginBottom="4dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,23 +25,24 @@
     <TextView
         android:id="@+id/bookNameTv"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="65dp"
         android:layout_marginStart="100dp"
-        android:textSize="18sp"
         android:textColor="#242424"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/bookPhotoImg"
         app:layout_constraintTop_toTopOf="@+id/bookPhotoImg"
-        tools:text="Name"/>
+        tools:text="Name" />
 
     <TextView
         android:id="@+id/bookNumbTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="17sp"
         android:textColor="#d54dff"
-        app:layout_constraintBottom_toBottomOf="@+id/bookPhotoImg"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/bookNameTv"
+        app:layout_constraintTop_toBottomOf="@+id/bookNameTv"
         tools:text="Number" />
 
     <TextView
@@ -49,8 +50,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:textSize="16sp"
         android:textColor="#ffbb4d"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/bookNumbTv"
         app:layout_constraintStart_toEndOf="@+id/bookNumbTv"
         app:layout_constraintTop_toTopOf="@+id/bookNumbTv"

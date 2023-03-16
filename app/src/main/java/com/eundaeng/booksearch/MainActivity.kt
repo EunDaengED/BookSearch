@@ -1,6 +1,7 @@
 package com.eundaeng.booksearch
 
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.*
@@ -15,6 +16,7 @@ import kotlin.arrayOf
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.io.FileNotFoundException
 
 fun sans(arr: JSONArray): ArrayList<ArrayList<String>> {
     val result: ArrayList<ArrayList<String>> = arrayListOf(arrayListOf("책이름", "대여", "책 번호", "http://vz.kro.kr/small.jpg"))
@@ -36,12 +38,28 @@ fun tost(Liist: ArrayList<Book>, re: ArrayList<ArrayList<String>>, adaptt: MainR
 
 class MainActivity : AppCompatActivity() {
 
-    val list_of_items = arrayOf("강원", "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "충북", "충남", "전북", "전남", "경북", "경남")
+    val list_of_items = arrayOf("서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남")
 
     var bookList = arrayListOf<Book>(
         Book("책이름", "대여", "책 번호", "http://vz.kro.kr/image/small.jpg"),
         Book("어린왕자", "가능", "ㄱ 5678", "http://vz.kro.kr/image/small.jpg")
     )
+    private fun saveCache(data: String) {
+        openFileOutput("data.lol", Context.MODE_PRIVATE).use { stream ->
+            stream.write(data.toByteArray())
+        }
+    }
+    private fun readCache(): String {
+        var contents = ""
+        try {
+            openFileInput("data.lol").bufferedReader().useLines { lines ->
+                contents = lines.joinToString("\n")
+            }
+        }catch(e: FileNotFoundException){
+            contents = ""
+        }
+        return contents
+    }
 
 //    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,13 +75,20 @@ class MainActivity : AppCompatActivity() {
         mRecyclerView.setHasFixedSize(true)
 
         val school = findViewById<EditText>(R.id.school)
+        school.setText(if(readCache() == "null" || readCache() == "") "" else readCache().split("lol")[1])
         val book = findViewById<EditText>(R.id.bookname)
         val local = findViewById<Spinner>(R.id.local)
         local.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list_of_items)
+        val pos = if(readCache() == "null" || readCache() == ""){
+            0
+        } else readCache().split("lol")[0].toInt()
+
+        local.setSelection(pos)
         val button = findViewById<Button>(R.id.button)
         val textView = findViewById<TextView>(R.id.textview)
 
         button.setOnClickListener() {
+            saveCache("${local.selectedItemPosition}lol${school.text}")
             CoroutineScope(IO).launch {
                 //var res:String? = "BookList"
                 val parse = Jsoup.connect("http://vz.kro.kr/?book="+book.getText()+"&school="+school.getText()+"&local="+local.selectedItem)

@@ -1,4 +1,4 @@
-#Thu Mar 16 22:03:09 KST 2023
-base.0=C\:\\Users\\admin\\Documents\\GitHub\\BookSearch-main\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Fri Mar 17 02:34:39 KST 2023
+base.0=D\:\\Projects\\BookSearch\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
