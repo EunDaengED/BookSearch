@@ -41,11 +41,15 @@ class MainRvAdapter(val context: Context, val bookList: ArrayList<Book>) :
             //context: Context
             /* dogPhoto의 setImageResource에 들어갈 이미지의 id를 파일명(String)으로 찾고,
             이미지가 없는 경우 안드로이드 기본 아이콘을 표시한다.*/
-            if (book.bPhoto != "" || book.bPhoto[book.bPhoto.length -1] != '=') {
+            if (book.bPhoto != "" && book.bPhoto[book.bPhoto.length -1] != '=') {
                 //val resourceId = context.resources.getIdentifier(book.bPhoto, "drawable", context.packageName)
                 Glide.with(itemView).load(book.bPhoto).into(bookPhoto)
-            } else {
-                bookPhoto?.setImageResource(R.mipmap.ic_launcher)
+            }
+            else if (book.bPhoto == "example"){
+                bookPhoto?.setImageResource(R.drawable.example)
+            }
+            else {
+                bookPhoto?.setImageResource(R.drawable.nopicture)
             }
             /* 나머지 TextView와 String 데이터를 연결한다. */
             bookName?.text = book.bName
