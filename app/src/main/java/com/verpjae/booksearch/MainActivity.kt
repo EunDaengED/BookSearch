@@ -1,6 +1,7 @@
 package com.verpjae.booksearch
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mAdView : AdView
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -108,11 +110,12 @@ class MainActivity : AppCompatActivity() {
                     .ignoreContentType(true).get().text()
                 if (JSONObject(parse).getString("status") == "success") {
                     val bresult: JSONArray = JSONObject(parse).getJSONArray("result")
+                    val schoolName = JSONObject(parse).getString("schoolName")
                     val ress = sans(bresult)
-                   CoroutineScope(Main).launch  {
+                    CoroutineScope(Main).launch  {
                         delay(50)
                         textView.setTextColor(Color.parseColor("#3fd467"))
-                        textView.setText("성공")
+                        textView.text = "성공 - $schoolName"
                         tost(bookList, ress, mAdapter)
                     }
                 } else {
@@ -123,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                         bookList.add(Book("책이름", "대여", "책 번호", "example"))
                         mAdapter.notifyDataSetChanged()
                         textView.setTextColor(Color.parseColor("#ff2424"))
-                        textView.setText(ress)
+                        textView.text = ress
                     }
                 }
             }

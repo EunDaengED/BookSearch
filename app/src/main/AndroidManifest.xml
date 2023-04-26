@@ -19,6 +19,7 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-1135151472298637~8827117672"/>
         <activity android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
