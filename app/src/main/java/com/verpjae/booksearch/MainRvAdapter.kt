@@ -35,6 +35,8 @@ class MainRvAdapter(val context: Context, val bookList: ArrayList<Book>) :
         val bookName = itemView?.findViewById<TextView>(R.id.bookNameTv)
         val bookNumb = itemView?.findViewById<TextView>(R.id.bookNumbTv)
         val bookRental = itemView?.findViewById<TextView>(R.id.bookRentalTv)
+        val bookWriter = itemView?.findViewById<TextView>(R.id.bookWriterTv)
+        val bookPublisher = itemView?.findViewById<TextView>(R.id.bookPublisherTv)
 
         fun bind (book: Book) {
             //context: Context
@@ -56,6 +58,8 @@ class MainRvAdapter(val context: Context, val bookList: ArrayList<Book>) :
             bookName?.text = book.bName
             bookNumb?.text = book.bNumb
             bookRental?.text = if(book.bRental == "true") "대여가능" else "대여불가"
+            bookWriter?.text = book.bWriter
+            bookPublisher?.text = book.bPublisher
         }
     }
     }

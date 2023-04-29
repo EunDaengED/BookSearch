@@ -11,6 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="학교 이름"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,6 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="책 이름"
+        android:inputType="text"
+        android:singleLine="true"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/school" />
